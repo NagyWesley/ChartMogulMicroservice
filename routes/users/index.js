@@ -7,5 +7,12 @@ module.exports = (express) => {
     res.send(await service.ping());
   });
 
+
+  router.post('/add', async (req, res) => {
+    const service = new UserService();
+    const UserData = req.body;
+    res.send(await service.createUser(UserData));
+  });
+
   return router;
 };

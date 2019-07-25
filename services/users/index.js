@@ -6,6 +6,13 @@ class UsersService extends CMSFactory {
       .then(response => response)
       .catch(err => console.error(err));
   }
+
+  async createUser(UserData) {
+    return this.ChartMogul.Customer
+      .create(this.config, UserData)
+      .then(response => response)
+      .catch(err => console.error(err));
+  }
 }
 
 module.exports = UsersService;
