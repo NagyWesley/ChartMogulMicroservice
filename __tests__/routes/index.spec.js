@@ -5,6 +5,7 @@ const request = require('supertest');
 const users = require('../../routes/users')(express);
 
 dotenv.config(); // to use something else
+const API_BASE = 'https://api.chartmogul.com';
 
 const initUsers = () => {
   const app = express();
@@ -14,16 +15,13 @@ const initUsers = () => {
 
 describe('Index route test', () => {
   it('test index route', async () => {
-    nock('https://api.chartmogul.com/')
+    nock(API_BASE)
       .get('/v1/ping')
-      .reply(200, {
-        results: [{ data: 'pong!' }],
-      });
-
+      .reply(200, { data: 'pong!' });
 
     const app = initUsers();
     const result = await request(app).get('/ping').then();
 
-    expect(result.body.results[0]).toEqual({ data: 'pong!' });
+    expect(result.body).toEqual({ data: 'pong!' });
   });
 });
