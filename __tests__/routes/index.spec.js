@@ -37,4 +37,16 @@ describe('Users route test', () => {
 
     expect(result.body).toEqual(dataMock.createUserResponse);
   });
+
+  it.skip('test retrieve customer', async () => {
+    nock(API_BASE)
+      .get('/v1/customers')
+      .query('cus_eaa30dc2-025c-11e7-9b58-5b5a8ca7dc6a')
+      .reply(dataMock.createUserResponse);
+
+    const app = initUsers();
+    const result = await request(app).get('/retrieve').query({ userId: 1234 }).then();
+
+    expect(result.body).toEqual(dataMock.createUserResponse);
+  });
 });

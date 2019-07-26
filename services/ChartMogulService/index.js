@@ -1,6 +1,6 @@
 const ChartMogul = require('chartmogul-node');
 
-class ChartMogulServiceFactory {
+class ChartMogulService {
   constructor() {
     this.config = new ChartMogul.Config(
       process.env.CHARTMOGUL_ACCOUNT_TOKEN,
@@ -12,4 +12,4 @@ class ChartMogulServiceFactory {
 }
 
 
-module.exports = ChartMogulServiceFactory;
+module.exports = ChartMogulService;
